@@ -1,0 +1,23 @@
+
+{% extends 'base_app/base.html' %}
+
+<title>{% block title %} Все курсы {% endblock %}</title>
+
+
+{% block content %}
+    <h2>Список всех курсов</h2>
+    <ul>
+        {% for course in courses %}
+            <li><a href="{{ course.get_url }}">{{ course.name }}</a>,
+                рейтинг - {{ course.rating }},
+                бюджет - {{ course.budget }},
+                год - {{ course.year|default:"Неизвестен" }}</li>
+            </li>
+        {% endfor %}
+
+    </ul>
+    <h3>Средний бюджет - {{ agg.budget__avg }} </h3>
+    <h3>Минимальный рейтинг - {{ agg.rating__min }} </h3>
+    <h3>Максимальный рейтинг - {{ agg.rating__max }} </h3>
+    <h3>Всего курсов - {{ agg.id__count }} </h3>
+{% endblock %}
